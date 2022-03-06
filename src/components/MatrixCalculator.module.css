@@ -1,5 +1,6 @@
 .root {
     display: flex;
-    gap: 10%;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 }
+
