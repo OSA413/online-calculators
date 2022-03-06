@@ -5,7 +5,7 @@ import {MatrixCalculator} from "./components/MatrixCalculator";
 import {MatrixData} from "./model/MatrixData";
 
 function App() {
-    const firstData: MatrixData = {rows:6, columns:6};
+    const firstData: MatrixData = {rows:5, columns:3};
     const secondData: MatrixData = {rows:3, columns:3};
   return (
 

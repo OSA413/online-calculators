@@ -9,7 +9,7 @@ export const MatrixItem: React.FC<{
     columns: number;
 }> = ({rows, columns}) =>{
     return <div className={classes.root}>
-        <p>{rows} x {columns}</p>
+        <p className={classes.title}>{rows} x {columns}</p>
         {renderMatrix(rows, columns)}
     </div>
 }
