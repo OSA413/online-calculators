@@ -1,9 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Cell} from "./uilib/cell/Cell";
+import {MatrixCalculator} from "./components/MatrixCalculator";
+import {MatrixData} from "./model/MatrixData";
 
 function App() {
+    const firstData: MatrixData = {rows:3, columns:3};
+    const secondData: MatrixData = {rows:3, columns:3};
   return (
 
     <div className="App">
@@ -14,14 +17,7 @@ function App() {
             </p>
         </header>
         <body>
-        <div>
-            <Cell/>
-            <Cell/>
-        </div>
-        <div>
-            <Cell/>
-            <Cell/>
-        </div>
+        <MatrixCalculator firstMatrixData={firstData} secondMatrixData={secondData} operation={"+"}/>
         </body>
         <footer className="App-footer">
 

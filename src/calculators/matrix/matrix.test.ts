@@ -1,4 +1,4 @@
-import MatrixCalculator from "./matris";
+import MatrixCalculator from "./matrix";
 
 describe("Matrix tests", () => {
     describe("Addition", () => {
