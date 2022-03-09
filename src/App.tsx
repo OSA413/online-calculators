@@ -1,12 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {MatrixCalculator} from "./components/MatrixCalculator";
-import {MatrixData} from "./model/MatrixData";
+import {TwoMatrixCalculator} from "./components/TwoMatrixCalculator";
 
 function App() {
-    const firstData: MatrixData = {rows:5, columns:3};
-    const secondData: MatrixData = {rows:3, columns:3};
   return (
 
     <div className="App">
@@ -17,7 +14,7 @@ function App() {
             </p>
         </header>
         <body>
-        <MatrixCalculator firstMatrixData={firstData} secondMatrixData={secondData} operation={"+"}/>
+        <TwoMatrixCalculator operation={"+"}/>
         </body>
         <footer className="App-footer">
 
