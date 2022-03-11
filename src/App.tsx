@@ -2,6 +2,12 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {TwoMatrixCalculator} from "./components/TwoMatrixCalculator";
+import {MatrixData} from "./model/MatrixData";
+import {Main} from "./components/Main";
+
+// function matrixOnClick() =>{
+//     return
+// }
 
 function App() {
   return (
@@ -14,7 +20,8 @@ function App() {
             </p>
         </header>
         <body>
-        <TwoMatrixCalculator operation={"+"}/>
+        {/*<button>Matrix</button>*/}
+        <Main/>
         </body>
         <footer className="App-footer">
 
