@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import classes from './MatrixItem.module.css'
 import {NumberField} from "../uilib/number-field/NumberField";
 
 
@@ -19,13 +18,13 @@ export const MatrixItem: React.FC = () =>{
         setValues(Array(rows).fill(0).map(() => Array(columns).fill(0)))
     , [rows, columns])
 
-    return <div className={classes.root}>
-        <div className={classes.title}>
+    return <div >
+        <div >
             <NumberField value={rows} onChange={e=> setRows(Number(e.target.value))}/>
             x
             <NumberField value={columns} onChange={e=> setColumns(Number(e.target.value))}/>
         </div>
-        <div className={classes.matrix}>
+        <div>
             <UseRenderMatrix matrix={values} change={change}/>
         </div>
     </div>

@@ -19,3 +19,21 @@ body {
     padding: 0.2em;
     margin: 0.5em;
 }
+
+.matrix-operation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.matrix-title {
+  width: fit-content;
+  padding: 0.2em;
+  font-size: 1.3em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.matrix {
+  margin: 5%;
+}
