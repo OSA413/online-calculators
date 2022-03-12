@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from './MatrixItem.module.css'
 import {NumberField} from "../uilib/number-field/NumberField";
 
@@ -10,43 +10,37 @@ export const MatrixItem: React.FC = () =>{
 
     const [values, setValues] = useState<number[][]>(Array(rows).fill(0).map(() => Array(columns).fill(0)));
 
-    const change = (i: number, j:number, v:number) => setValues(values => {
-        values[i][j] = v;
-        console.log(values[i][j])
-        return [...values]
+    const change = (i: number, j:number, v:number) => setValues(value => {
+        value[i][j] = v;
+        return [...value]
     });
 
-    const resizeMatrix = (type: "row" | "col", val:number) => {
-        if (type === 'row') setRows(Number(val))
-        if (type === 'col') setColumns(Number(val))
-
+    useEffect(() => 
         setValues(Array(rows).fill(0).map(() => Array(columns).fill(0)))
-    }
+    , [rows, columns])
 
     return <div className={classes.root}>
         <div className={classes.title}>
-            <NumberField value={rows} onChange={e=> resizeMatrix("row", Number(e.target.value))}/>
+            <NumberField value={rows} onChange={e=> setRows(Number(e.target.value))}/>
             x
-            <NumberField value={columns} onChange={e=> resizeMatrix("col", Number(e.target.value))}/>
+            <NumberField value={columns} onChange={e=> setColumns(Number(e.target.value))}/>
         </div>
         <div className={classes.matrix}>
-            <UseRenderMatrix matrix={values} rows={rows} columns={columns} change={change}/>
+            <UseRenderMatrix matrix={values} change={change}/>
         </div>
     </div>
 }
 
-const UseRenderMatrix = ({matrix, rows, columns, change}:
-     {matrix: number[][] ,rows: number, columns: number, change: (i: number, j: number, v: number)=>void})
+const UseRenderMatrix = ({matrix, change}:
+     {matrix: number[][] , change: (i: number, j: number, v: number)=>void})
      : JSX.Element => {
 
     const cells = [];
-    
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++)
-            cells.push(<input type={"number"} value={matrix?.[i]?.[j] ?? 0} onChange={e => change(i, j, Number(e.target.value))} />)
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++)
+            cells.push(<input type={"number"} value={matrix[i][j]} onChange={e => change(i, j, Number(e.target.value))} />)
         cells.push(<br/>)
     }
-    console.log(matrix)
 
     return <div>
         {cells}
