@@ -17,11 +17,18 @@ export const MatrixItem: React.FC = () =>{
         return [...values]
     });
 
+    const resizeMatrix = (type: "row" | "col", val:number) => {
+        if (type === 'row') setRows(Number(val))
+        if (type === 'col') setColumns(Number(val))
+
+        setValues(Array(rows).fill(0).map(() => Array(columns).fill(0)))
+    }
+
     return <div className={classes.root}>
         <div className={classes.title}>
-            <NumberField value={rows} onChange={e=> setRows(Number(e.target.value))}/>
+            <NumberField value={rows} onChange={e=> resizeMatrix("row", Number(e.target.value))}/>
             x
-            <NumberField value={columns} onChange={e=> setColumns(Number(e.target.value))}/></div>
+            <NumberField value={columns} onChange={e=> resizeMatrix("col", Number(e.target.value))}/></div>
         <div className={classes.matrix}>
             <UseRenderMatrix matrix={values} rows={rows} columns={columns} change={change}/>
         </div>
@@ -34,12 +41,11 @@ const UseRenderMatrix = ({matrix, rows, columns, change}:
     const cells = [];
     
     for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++) {
+        for (let j = 0; j < columns; j++)
             cells.push(<input type={"number"} value={matrix?.[i]?.[j] ?? 0} onChange={e => change(i, j, Number(e.target.value))} />)
-        }
         cells.push(<br/>)
     }
-    console.log(rows, columns)
+    console.log(matrix)
 
     return <div>
         {cells}
