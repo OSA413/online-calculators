@@ -23,7 +23,7 @@ function useRenderMatrix(rows: number, columns: number) {
 
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < columns; j++) {
-            cells.push(<Cell onChange={e=> {
+            cells.push(<input type={"number"} value={values[i][j]} onChange={e=> {
                 setValues(values => {
                     values[i][j] = Number(e.target.value);
                     console.log(values[i][j])
