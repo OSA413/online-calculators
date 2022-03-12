@@ -12,14 +12,13 @@ export const TwoMatrixCalculator: React.FC<{
     </div>
 }
 
-function renderMatrixOperation( operation: string){
-    const input = [];
-    input.push(<MatrixItem />);
-    input.push(<Operator onClick={()=>renderAnswer([[0]], [[0]], operation)}>{operation}</Operator>);
-    input.push(<MatrixItem/>);
-    input.push(<p style={{fontSize: "2em"}}> = </p>)
-    return input;
-
+const renderMatrixOperation = ( operation: string) => {
+    return <>
+        <MatrixItem key={1} />
+        <Operator onClick={()=>renderAnswer([[0]], [[0]], operation)}>{operation}</Operator>
+        <MatrixItem key={2}/>
+        <p style={{fontSize: "2em"}}> = </p>
+    </>
 }
 
 function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][], operation: string){

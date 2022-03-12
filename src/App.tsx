@@ -13,9 +13,9 @@ function App() {
                 Онлайн Калькуляторы на все случаи жизни!
             </p>
         </header>
-        <body>
-        <TwoMatrixCalculator operation={"+"}/>
-        </body>
+        <div>
+          <TwoMatrixCalculator operation={"+"}/>
+        </div>
         <footer className="App-footer">
 
         </footer>
