@@ -1,14 +1,9 @@
 import React, {ReactComponentElement, useState} from "react";
 
-export const CalculatorWindow: React.FC<{
-    calculator: React.FC
-}>= () => {
-    const [content, setContent] = useState([]);
-    return <div>
-        {content}
-    </div>
+class CurrentCalculator {
+    static Calculator: React.Component
+    static getCalculator = () => CurrentCalculator.Calculator;
+    static setCalculator = (calculator: React.Component) => CurrentCalculator.Calculator = calculator;
 }
 
-function setCalculator (calculator: React.Component) { //interface here?
-
-}
+export default CurrentCalculator;
