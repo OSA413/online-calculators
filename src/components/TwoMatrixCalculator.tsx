@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {MatrixItem} from "./MatrixItem";
 import {Operator} from "../uilib/operator/Operator";
 import {MatrixAnswer} from "./MatrixAnswer";
 import MatrixCalculator, {Matrix} from "../calculators/matrix/matrix";
+import '../index.scss';
 
 
 export const TwoMatrixCalculator: React.FC<{
@@ -16,27 +17,46 @@ export const TwoMatrixCalculator: React.FC<{
 
 const MatrixOperation = ( operation: string) => {
     const [answerVisibility, setAnswerVisibility] = useState<boolean>(false);
-    return <>
-        <MatrixItem key={1} />
-        <Operator onClick={()=> {
-            if(answerVisibility)
-                setAnswerVisibility(false)
-            else
-                setAnswerVisibility(true)
-        }}>{operation}</Operator>
-        <MatrixItem key={2}/>
-        <p style={{fontSize: "2em"}}> = </p>
-        <MatrixAnswer visibility={answerVisibility} values={renderAnswer(Array(3).fill(0).map(() => Array(3).fill(4)), Array(3).fill(4).map(() => Array(3).fill(5)), operation)}/>
-    </>
+    const [values1, setValues1] = useState<number[][]>([[0]]);
+    const [values2, setValues2] = useState<number[][]>([[0]]);
+
+    useEffect(() => setAnswerVisibility(false), [values1, values2, operation])
+
+    return <div>
+        <div  className={"matrix-operation"}>
+            <MatrixItem key={1} onChange={(value?)=> setValues1(value)}/>
+            <Operator  onClick={()=> {
+                if(!answerVisibility)
+                    setAnswerVisibility(true)
+            }}>{operation}</Operator>
+            <MatrixItem key={2} onChange={(value?) => setValues2(value)}/>
+            <p style={{fontSize: "2em"}}> = </p>
+        </div>
+
+        <div  className={"matrix-operation"}>
+            {renderAnswer(values1, values2, operation, answerVisibility)}
+        </div>
+
+    </div>
+
 }
 
-function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][], operation: string){
+function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][], operation: string, answerVisibility: boolean){
     if(operation === "+"){
-        console.log("A + B = C")
         let a:Matrix = { data: firstMatrixData}
         let b:Matrix = { data: secondMatrixData}
-        return MatrixCalculator.Add(a, b).data;
+        try {
+            let answer = MatrixCalculator.Add(a, b);
+            return <MatrixAnswer visibility={answerVisibility} values={answer.data}/>
+        }
+        catch (e) {
+            return <p>Неправильный размер матриц</p>;
+        }
+
     }
-    return firstMatrixData;
+    return <p>Непподерживаемя операция</p>;
 }
+
+
+
 

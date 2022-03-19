@@ -27,13 +27,19 @@ body {
 }
 
 .matrix-title {
-  width: fit-content;
-  padding: 0.2em;
-  font-size: 1.3em;
-  margin-left: auto;
-  margin-right: auto;
+  display: inline;
+  width: 10%;
+
 }
 
 .matrix {
   margin: 5%;
+}
+
+.matrix-answer{
+  border: black 1px solid;
+  width: 3em;
+  height: 2em;
+  padding: 1em;
+  margin: 2em;
 }
