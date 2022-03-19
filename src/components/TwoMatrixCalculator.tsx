@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {MatrixItem} from "./MatrixItem";
-import {Operator} from "../uilib/operator/Operator";
 import {MatrixAnswer} from "./MatrixAnswer";
 import MatrixCalculator, {Matrix} from "../calculators/matrix/matrix";
 import '../index.scss';
@@ -25,10 +24,10 @@ const MatrixOperation = ( operation: string) => {
     return <div>
         <div  className={"matrix-operation"}>
             <MatrixItem key={1} onChange={(value?)=> setFirstMatrixData(value)}/>
-            <Operator  onClick={()=> {
+            <button className={"matrix-operator"}  onClick={()=> {
                 if(!answerVisibility)
                     setAnswerVisibility(true)
-            }}>{operation}</Operator>
+            }}>{operation}</button>
             <MatrixItem key={2} onChange={(value?) => setSecondMatrixData(value)}/>
             <p style={{fontSize: "2em"}}> = </p>
         </div>
