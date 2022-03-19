@@ -23,12 +23,12 @@ const MatrixOperation = ( operation: string) => {
 
     return <div>
         <div  className={"matrix-operation"}>
-            <MatrixItem key={1} onChange={(value?)=> setFirstMatrixData(value)}/>
+            <MatrixItem key={1} onChange={(matrixData)=> setFirstMatrixData(matrixData)}/>
             <button className={"matrix-operator"}  onClick={()=> {
                 if(!answerVisibility)
                     setAnswerVisibility(true)
             }}>{operation}</button>
-            <MatrixItem key={2} onChange={(value?) => setSecondMatrixData(value)}/>
+            <MatrixItem key={2} onChange={(matrixData) => setSecondMatrixData(matrixData)}/>
             <p style={{fontSize: "2em"}}> = </p>
         </div>
 
