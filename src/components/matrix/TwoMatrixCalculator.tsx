@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {MatrixItem} from "./MatrixItem";
 import {MatrixAnswer} from "./MatrixAnswer";
-import MatrixCalculator, {Matrix} from "../calculators/matrix/matrix";
-import '../index.scss';
+import MatrixCalculator, {Matrix} from "../../calculators/matrix/matrix";
+import '../../index.scss';
 
 
 export const TwoMatrixCalculator: React.FC<{

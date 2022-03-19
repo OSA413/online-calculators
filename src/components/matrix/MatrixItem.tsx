@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import '../index.scss';
+import '../../index.scss';
 
 
 
@@ -30,18 +30,17 @@ export const MatrixItem: React.FC<{onChange(data: number[][]): void}> = ({onChan
             <input type={"number"} className={"matrix-title-item"} value={columns} onChange={e=> setColumns(Number(e.target.value))}/>
         </div>
         <div >
-            <UseRenderMatrix matrix={matrixData} change={change}/>
+            <RenderMatrix matrix={matrixData} change={change}/>
         </div>
     </div>
 }
 
-const UseRenderMatrix = ({matrix, change}:
+const RenderMatrix = ({matrix, change}:
      {matrix: number[][] , change: (i: number, j: number, v: number)=>void})
      : JSX.Element => {
 
     const cells = [];
     for (let i = 0; i < matrix.length; i++) {
-
         for (let j = 0; j < matrix[0].length; j++)
             cells.push(<input className={"matrix-cell"} key={i+"+"+j} type={"number"} value={matrix[i][j]} onChange={e => change(i, j, Number(e.target.value))} />)
         cells.push(<div key={i}/>)

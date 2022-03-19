@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {TwoMatrixCalculator} from "./components/TwoMatrixCalculator";
+import {TwoMatrixCalculator} from "./components/matrix/TwoMatrixCalculator";
 
 function App() {
   return (
