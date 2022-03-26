@@ -35,7 +35,6 @@ const MatrixOperation = ( operation: string) => {
         <div  className={"matrix-operation"}>
             {renderAnswer(firstMatrixData, secondMatrixData, operation, answerVisibility)}
         </div>
-
     </div>
 
 }
@@ -51,9 +50,8 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
             return <MatrixAnswer values={answer.data}/>
         }
         catch (e) {
-            return <p >Неправильный размер матриц</p>;
+            return <p>Неправильный размер матриц</p>;
         }
-
     }
     else if(operation === "-"){
         let a:Matrix = { data: firstMatrixData}
@@ -63,9 +61,8 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
             return <MatrixAnswer values={answer.data}/>
         }
         catch (e) {
-            return <p >Неправильный размер матриц</p>;
+            return <p>Неправильный размер матриц</p>;
         }
-
     }
     return <p>Неподдерживаемя операция</p>;
 }
