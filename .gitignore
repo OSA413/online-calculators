@@ -28,3 +28,4 @@ yarn.lock
 
 # stryker temp files
 .stryker-tmp
+/reports
