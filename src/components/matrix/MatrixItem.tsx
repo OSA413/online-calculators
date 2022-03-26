@@ -42,7 +42,7 @@ const RenderMatrix = ({matrix, change}:
     const cells = [];
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[0].length; j++)
-            cells.push(<input className={"matrix-cell"} key={i+"+"+j} type={"number"} value={matrix[i][j]} onChange={e => change(i, j, Number(e.target.value))} />)
+            cells.push(<input className={"matrix-cell"}  key={i+"+"+j} type={"number"} value={matrix[i][j]} onChange={e => change(i, j, Number(e.target.value))} />)
         cells.push(<div key={i}/>)
     }
 
