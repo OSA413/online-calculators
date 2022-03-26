@@ -14,7 +14,7 @@ function App() {
             </p>
         </header>
         <div>
-          <TwoMatrixCalculator operation={"+"}/>
+          <TwoMatrixCalculator operation={"*"}/>
         </div>
         <footer className="App-footer">
 

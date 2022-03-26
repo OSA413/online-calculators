@@ -42,7 +42,7 @@ const MatrixOperation = ( operation: string) => {
 
 function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][], operation: string, answerVisibility: boolean){
     if(!answerVisibility)
-        return <></>
+        return null
     if(operation === "+"){
         let a:Matrix = { data: firstMatrixData}
         let b:Matrix = { data: secondMatrixData}
@@ -55,7 +55,19 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
         }
 
     }
-    return <p>Непподерживаемя операция</p>;
+    else if(operation === "-"){
+        let a:Matrix = { data: firstMatrixData}
+        let b:Matrix = { data: secondMatrixData}
+        try {
+            let answer = MatrixCalculator.Subtraction(a, b);
+            return <MatrixAnswer values={answer.data}/>
+        }
+        catch (e) {
+            return <p >Неправильный размер матриц</p>;
+        }
+
+    }
+    return <p>Неподдерживаемя операция</p>;
 }
 
 

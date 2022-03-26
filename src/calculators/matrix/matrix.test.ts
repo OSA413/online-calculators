@@ -22,4 +22,5 @@ describe("Matrix tests", () => {
             expect(a.data[1][1]).toBe(16);
         });
     })
+
 })
