@@ -1,7 +1,7 @@
 import React from "react";
 
 const MainPage = (): JSX.Element => {
-    return <div>Home</div>
+    return <div className="main">Home</div>
 }
 
 export default MainPage;
