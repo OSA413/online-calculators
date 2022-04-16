@@ -1,5 +1,6 @@
 import React from 'react';
 import * as SiIcons from 'react-icons/si';
+import * as FaIcons from 'react-icons/fa';
 
 export const ListItems = [
 {
@@ -13,5 +14,11 @@ export const ListItems = [
     path: '',
     icon: SiIcons.SiMatrix,
     cName: 'nav-text'
-}
+},
+    {
+        title: 'Bmi',
+        path: '/bmi',
+        icon: FaIcons.FaWeight,
+        cName: 'nav-text'
+    }
 ]

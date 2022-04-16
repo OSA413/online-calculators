@@ -5,6 +5,7 @@ import * as AiIcons from 'react-icons/ai';
 import {ListItems} from "./ListItems";
 import './CalculatorList.css';
 import {IconContext} from "react-icons";
+import logo from '../../logo.svg';
 
 function CalculatorList(){
     const [sidebar, showSidebar] = useState(false);
@@ -13,6 +14,7 @@ function CalculatorList(){
     return ( <>
         <IconContext.Provider value={{ color: '#fff' }}>
         <div className="navbar">
+            <img src={logo} className='logo'/>
             <Link to="#" className='menu-bars'>
                 <FaIcons.FaBars onClick={setSidebar} />
             </Link>
