@@ -5,7 +5,7 @@ export function MatrixCalc(){
     return(
         <div className='matrix'>
             <div>
-                <TwoMatrixCalculator operation={"+"}/>
+                <TwoMatrixCalculator />
             </div>
         </div>
     )

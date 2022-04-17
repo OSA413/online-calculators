@@ -33,7 +33,7 @@ body {
 }
 
 .matrix-title-item {
-  width: 2em;
+  width: 3em;
   padding: 0.2em;
   margin: 0 auto;
 
@@ -52,8 +52,17 @@ body {
   margin: 2em;
 }
 
-.matrix-operator {
+.matrix-result-operation {
   width: 2em;
   height: 2em;
   font-size: 1.5em;
 }
+
+.matrix-operator-input {
+  width: 2em;
+  height: 2em;
+  font-size: 1.5em;
+  text-align:center;
+}
+
+
