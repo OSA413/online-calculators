@@ -16,7 +16,7 @@ export const ListItems = [
         cName: 'nav-text'
     },
     {
-        title: 'Bmi',
+        title: 'Индекс массы тела',
         path: '/bmi',
         icon: FaIcons.FaWeight,
         cName: 'nav-text'
