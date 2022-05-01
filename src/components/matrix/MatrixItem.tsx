@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../../index.scss';
+import {Box, InputLabel, TextField} from "@mui/material";
 
 
 
@@ -22,9 +23,18 @@ export const MatrixItem: React.FC<{onChange(data: number[][]): void}> = ({onChan
 
     return <div className={"matrix"} >
         <div className={"matrix-title"}>
-            <input type={"number"} className={"matrix-title-item"} value={rows} onChange={e=> setRows(Number(e.target.value))}/>
-            x
-            <input type={"number"} className={"matrix-title-item"} value={columns} onChange={e=> setColumns(Number(e.target.value))}/>
+            <Box
+                sx={{
+                    '& .MuiTextField-root': { m: 1, width: '4ch'},
+                }}
+                justifyContent="center"
+                alignItems="center">
+                <TextField  inputProps={{min: 0, style: { textAlign: 'center'  }}} variant={"standard"}  color={"primary"} focused value={rows} type={"number"} onChange={e=> setRows(Number(e.target.value))}/>
+                <TextField inputProps={{min: 0, style: { textAlign: 'center'  }}} style = {{width: "2ch"}} variant={"standard"}  color={"primary"} value={"x"}/>
+
+                <TextField inputProps={{min: 0, style: { textAlign: 'center'  }}} variant={"standard"} color={"primary"} focused value={columns} type={"number"} onChange={e=> setColumns(Number(e.target.value))}/>
+            </Box>
+
         </div>
         <div >
             <RenderMatrix matrix={matrixData} change={change}/>
@@ -38,13 +48,29 @@ const RenderMatrix = ({matrix, change}:
 
     const cells = [];
     for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[0].length; j++)
-            cells.push(<input className={"matrix-cell"} key={i+"+"+j} value={matrix[i][j]} onChange={e => change(i, j, Number(e.target.value))} />)
+        for (let j = 0; j < matrix[0].length; j++) {
+            cells.push(<TextField value={matrix[i][j]} type="number"
+                                  color={"warning"}
+                                  InputLabelProps={{
+                                      shrink: true,
+                                  }}
+                                  variant="filled"
+                                  onChange={e => change(i, j, Number(e.target.value))}/>)
+        }
         cells.push(<div key={i}/>)
     }
 
     return <div>
+        <Box
+            component="form"
+            sx={{
+                '& .MuiTextField-root': { m: 1, width: '6ch'},
+            }}
+            noValidate
+            autoComplete="off"
+        >
         {cells}
+        </Box>
     </div>;
 }
 

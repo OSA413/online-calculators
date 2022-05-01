@@ -10,7 +10,7 @@ export const ListItems = [
         cName: 'nav-text'
     },
     {
-        title: 'Matrix',
+        title: 'Матрицы',
         path: '/matrix',
         icon: SiIcons.SiMatrix,
         cName: 'nav-text'

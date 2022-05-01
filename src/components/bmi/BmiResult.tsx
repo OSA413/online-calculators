@@ -7,7 +7,7 @@ export class BmiResult{
 
     static Calculate = (): void => {
         if (BmiResult.weight && BmiResult.height) {
-            BmiResult.result = String((BmiResult.weight / (BmiResult.height * BmiResult.height)) * 10000);
+            BmiResult.result = String(((BmiResult.weight / (BmiResult.height * BmiResult.height)) * 10000).toFixed(2));
         } else{
             BmiResult.result = 'Проверьте правильность введённых параметров';
         }
