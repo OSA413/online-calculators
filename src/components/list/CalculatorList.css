@@ -76,7 +76,7 @@
 /*}*/
 
 .navbar {
-    background-color: lightslategray;
+    background-color: peachpuff;
     height: 80px;
     display: flex;
     flex-direction: row;
@@ -99,7 +99,15 @@
 .nav-menu {
     display: grid;
     grid-template-columns: 1fr 3fr;
+    height: 100vh;
+
 }
+
+.nav-side {
+    background-color: peachpuff;
+
+}
+
 
 .nav-text {
     display: flex;
@@ -133,7 +141,7 @@
 }
 
 .navbar-toggle {
-    background-color: lightslategray;
+    background-color: peachpuff;
     width: 100%;
     height: 80px;
     display: flex;
