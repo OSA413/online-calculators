@@ -1,15 +1,21 @@
-import React, {ChangeEventHandler, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {MatrixItem} from "./MatrixItem";
 import {MatrixAnswer} from "./MatrixAnswer";
 import MatrixCalculator, {Matrix} from "../../calculators/matrix/matrix";
 import '../../index.scss';
-import {Button, TextField} from "@mui/material";
+import {Button, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 
 
 export const TwoMatrixCalculator: React.FC = () =>{
 
     return <MatrixOperation/>
 }
+
+const operations = [
+    "+",
+    "-",
+    "*"
+]
 
 const MatrixOperation = ( ) => {
     const [answerVisibility, setAnswerVisibility] = useState<boolean>(false);
@@ -20,14 +26,8 @@ const MatrixOperation = ( ) => {
 
     useEffect(() => setAnswerVisibility(false), [operation])
 
-    function handleChange(event: React.ChangeEvent<HTMLInputElement> ) {
-
-        const value = event.target.value;
-        if(value.length > 1 ){
-            setOperation('')
-            return
-        }
-        setOperation(value)
+    function handleChange(event: SelectChangeEvent) {
+        setOperation(event.target.value)
     }
 
 
@@ -35,7 +35,16 @@ const MatrixOperation = ( ) => {
     return <div>
         <div  className={"matrix-operation"}>
             <MatrixItem key={1} onChange={(matrixData)=> setFirstMatrixData(matrixData)}/>
-            <TextField  inputProps={{min: 0, style: { textAlign: 'center'  }}} variant={"standard"} style = {{width: "4ch"}} value={operation} onChange={handleChange}/>
+            <Select
+                value={operation}
+                inputProps={{min: 0, style: { textAlign: 'center'  }}}
+                variant={"standard"}
+                onChange={handleChange}
+            >
+                {operations.map(o=> {
+                    return( <MenuItem value={o}>{o}</MenuItem>)
+                })}
+            </Select>
             <MatrixItem key={2} onChange={(matrixData) => setSecondMatrixData(matrixData)}/>
         </div>
         <div className={"matrix-operation"}>

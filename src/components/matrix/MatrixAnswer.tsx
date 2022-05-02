@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../index.scss';
-import {Box, OutlinedInput, TextField} from "@mui/material";
+import {Box, TextField} from "@mui/material";
 
 
 export const MatrixAnswer: React.FC<{

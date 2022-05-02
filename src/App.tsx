@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CalculatorList from "./components/list/CalculatorList";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import {TwoMatrixCalc} from "./components/pages/TwoMatrixCalc";
 import MainPage from "./components/pages/MainPage";
@@ -16,7 +15,7 @@ function App() {
     <div className="App">
     <IconContext.Provider value={{ color: '#fff' }}>
         <div className="navbar">
-            <img src={logo} className='logo'/>
+            <img src={logo} className='logo' alt={"logo"}/>
         </div>
         <div className='nav-menu'>
           <nav className={'nav-side'}>

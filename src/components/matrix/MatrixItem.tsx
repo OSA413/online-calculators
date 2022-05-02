@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../../index.scss';
-import {Box, InputLabel, TextField} from "@mui/material";
+import {Box, TextField} from "@mui/material";
 
 
 
@@ -25,7 +25,7 @@ export const MatrixItem: React.FC<{onChange(data: number[][]): void}> = ({onChan
         <div className={"matrix-title"}>
             <Box
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: '4ch'},
+                    '& .MuiTextField-root': { m: 1, maxWidth: '4ch'},
                 }}
                 justifyContent="center"
                 alignItems="center">
@@ -64,7 +64,7 @@ const RenderMatrix = ({matrix, change}:
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '6ch'},
+                '& .MuiTextField-root': { m: 1, width: '8ch'},
             }}
             noValidate
             autoComplete="off"

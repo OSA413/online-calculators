@@ -1,6 +1,26 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {BmiResult} from "../../components/bmi/BmiResult";
-import {Box, InputAdornment, TextField, Typography} from "@mui/material";
+import {
+    Box,
+    InputAdornment,
+    Paper,
+    Table, TableBody, TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    TextField,
+    Typography
+} from "@mui/material";
+
+const rows: {bmi: string, description: string}[] = [
+    {bmi: "16 и менее",	description: "Выраженный дефицит массы тела"},
+    {bmi: "16-18,5",	description: "Недостаточная (дефицит) масса тела"},
+    {bmi: "18,5-25",	description: "Норма"},
+    {bmi: "25-30",	description: "Избыточная масса тела (предожирение)"},
+    {bmi: "30-35",	description: "Ожирение первой степени"},
+    {bmi: "35-40",	description: "Ожирение второй степени"},
+    {bmi: "40 и более",	description: "Ожирение третьей степени (морбидное)"},
+];
 
 export const Bmi: React.FC = () => {
     const [result, setResult] = useState<string>(BmiResult.result);
@@ -42,6 +62,30 @@ export const Bmi: React.FC = () => {
                 }}/>
             </div>
             </Box>
+            <TableContainer component={Paper} >
+                <Table  >
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="right">Индекс массы тела</TableCell>
+                            <TableCell align="left">Описание</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row) => (
+                            <TableRow
+                                key={row.bmi}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell align="right" component="th" scope="row">
+                                    {row.bmi}
+                                </TableCell>
+                                <TableCell align="left">{row.description}</TableCell>
+
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
 
     </>
