@@ -3,14 +3,16 @@ import {BmiResult} from "../../components/bmi/BmiResult";
 import {
     Box,
     InputAdornment,
-    Paper,
-    Table, TableBody, TableCell,
+    Paper, styled,
+    Table, TableBody, TableCell, tableCellClasses,
     TableContainer,
     TableHead,
     TableRow,
     TextField,
     Typography
 } from "@mui/material";
+
+
 
 const rows: {bmi: string, description: string}[] = [
     {bmi: "16 и менее",	description: "Выраженный дефицит массы тела"},
@@ -22,6 +24,25 @@ const rows: {bmi: string, description: string}[] = [
     {bmi: "40 и более",	description: "Ожирение третьей степени (морбидное)"},
 ];
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.warning.main,
+        color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
 export const Bmi: React.FC = () => {
     const [result, setResult] = useState<string>(BmiResult.result);
     return <>
@@ -65,23 +86,20 @@ export const Bmi: React.FC = () => {
             <TableContainer component={Paper} >
                 <Table  >
                     <TableHead>
-                        <TableRow>
-                            <TableCell align="right">Индекс массы тела</TableCell>
-                            <TableCell align="left">Описание</TableCell>
-                        </TableRow>
+                        <StyledTableRow>
+                            <StyledTableCell align="right">Индекс массы тела</StyledTableCell>
+                            <StyledTableCell align="left">Описание</StyledTableCell>
+                        </StyledTableRow>
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
-                            <TableRow
-                                key={row.bmi}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell align="right" component="th" scope="row">
+                            <StyledTableRow key={row.bmi}>
+                                <StyledTableCell  align="right" component="th" scope="row">
                                     {row.bmi}
-                                </TableCell>
-                                <TableCell align="left">{row.description}</TableCell>
+                                </StyledTableCell>
+                                <StyledTableCell align="left">{row.description}</StyledTableCell>
 
-                            </TableRow>
+                            </StyledTableRow>
                         ))}
                     </TableBody>
                 </Table>
