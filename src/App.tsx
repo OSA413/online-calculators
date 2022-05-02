@@ -1,24 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CalculatorList from "./components/list/CalculatorList";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import {MatrixCalc} from "./components/pages/MatrixCalc";
+import {TwoMatrixCalc} from "./components/pages/TwoMatrixCalc";
 import MainPage from "./components/pages/MainPage";
 import BmiPage from "./components/pages/BmiPage";
 import { IconContext } from 'react-icons';
 import { ListItems } from './components/list/ListItems';
 import './components/list/CalculatorList.css';
+import {OneMatrixCalc} from "./components/pages/OneMatrixCalc";
 
 function App() {
   return ( <BrowserRouter>
     <div className="App">
     <IconContext.Provider value={{ color: '#fff' }}>
         <div className="navbar">
-            <img src={logo} className='logo'/>
+            <img src={logo} className='logo' alt={"logo"}/>
         </div>
         <div className='nav-menu'>
-          <nav>
+          <nav className={'nav-side'}>
               <ul>
                 {ListItems.map((item, index) => {
                   return (
@@ -31,7 +31,8 @@ function App() {
               </ul>
           </nav>
           <Routes>
-              <Route path="matrix" element={<MatrixCalc/>}/>
+              <Route path="one-matrix" element={<OneMatrixCalc/>}/>
+              <Route path="two-matrix" element={<TwoMatrixCalc/>}/>
               <Route path="/" element={<MainPage/>}/>
               <Route path="bmi" element={<BmiPage/>}/>
           </Routes>

@@ -10,8 +10,14 @@ export const ListItems = [
         cName: 'nav-text'
     },
     {
-        title: 'Matrix',
-        path: '/matrix',
+        title: 'Операции с одной матрицой',
+        path: '/one-matrix',
+        icon: SiIcons.SiMatrix,
+        cName: 'nav-text'
+    },
+    {
+        title: 'Операции с двумя матрицами',
+        path: '/two-matrix',
         icon: SiIcons.SiMatrix,
         cName: 'nav-text'
     },

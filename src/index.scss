@@ -41,7 +41,7 @@ body {
 }
 
 .matrix {
-  margin: 5%;
+  margin: 3%;
 }
 
 .matrix-answer{
@@ -64,5 +64,52 @@ body {
   font-size: 1.5em;
   text-align:center;
 }
+
+.bmi-title {
+  text-align:center;
+  flex: 1;
+}
+
+.bmi-description {
+  word-wrap: break-word;
+  white-space: pre-line;
+  text-align:center;
+  padding: 2%;
+  margin: auto;
+}
+
+.bmi-header{
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin: 5%;
+}
+
+.bmi-calc {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  margin: 5%;
+
+}
+
+.bmi-input {
+  width: 3em;
+  text-align:center;
+
+
+}
+
+.bmi-item {
+  padding: 1%;
+  text-align:center;
+
+}
+
+.bmi-result {
+  padding: 1%;
+  text-align:center;
+}
+
 
 
