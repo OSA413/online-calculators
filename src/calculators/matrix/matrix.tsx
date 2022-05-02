@@ -39,22 +39,51 @@ class MatrixCalculator {
     }
 
     static Determinant = (m: Matrix): number =>{
+        if (!MatrixCalculator.IsSquare(m)) {
+            throw "Matrix dimensions differ"
+        }
+        if (m.data.length === 1){
+            return m.data[0][0];
+        }
         if (m.data.length === 2){
             return ((m.data[0][0] * m.data[1][1]) - (m.data[0][1] * m.data[1][0]));
         }
         let res = 0;
         for (let i = 0; i < m.data.length; i++){
-            res += Math.pow(-1, i) * m.data[0][i] * this.Determinant(this.DeleteRowAndColumn(m, i));
+            res += Math.pow(-1, i) * m.data[0][i] * this.Determinant(this.DeleteRowAndColumn(m, i, 0));
         }
         return res;
     }
 
-    static DeleteRowAndColumn = (m: Matrix, colNumber: number): Matrix =>{
+    static InverseMatrix = (m: Matrix): Matrix => {
+        if (!MatrixCalculator.IsSquare(m)) {
+            throw "Matrix dimensions differ"
+        }
+        const transposedMatrixOfCofactors = MatrixCalculator.Transpose(MatrixCalculator.MatrixOfCofactors(m));
+        const inverseDeterminant = 1 / MatrixCalculator.Determinant(m);
+        return MatrixCalculator.ScalarMultiply(transposedMatrixOfCofactors, inverseDeterminant);
+    }
+
+    static MatrixOfCofactors = (m: Matrix): Matrix =>{
+        const res = new Array(m.data.length).fill(0).map(row => new Array(m.data[0].length).fill(0));
+        for (let i = 0; i < m.data.length; i++){
+            for (let j = 0; j < m.data[0].length; j++){
+                const removedRowAndColumnSubmatrix = MatrixCalculator.DeleteRowAndColumn(m, j, i);
+                res[i][j] = Math.pow(-1, i+j) * MatrixCalculator.Determinant(removedRowAndColumnSubmatrix);
+            }
+        }
+        return {data: res};
+    }
+
+    static DeleteRowAndColumn = (m: Matrix, colNumber: number, rowNumber: number): Matrix =>{
         let res = new Array(m.data.length - 1).fill(0).map(row => new Array(m.data[0].length - 1).fill(0));
         let newCol = 0;
         let newRow = 0;
-        for (let i = 1; i < m.data.length; i++){
-            for (let j = 0; i < m.data[1].length; j++){
+        for (let i = 0; i < m.data.length; i++){
+            if (i === rowNumber){
+                continue;
+            }
+            for (let j = 0; j < m.data[1].length; j++){
                 if (j === colNumber){
                     continue;
                 }
@@ -62,6 +91,7 @@ class MatrixCalculator {
                 newCol++;
             }
             newRow++;
+            newCol = 0;
         }
         return {data: res}
     }
