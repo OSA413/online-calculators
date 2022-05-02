@@ -20,7 +20,7 @@ export const MatrixAnswer: React.FC<{
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '6ch' },
+                '& .MuiTextField-root': { m: 1, width: '8ch' },
             }}
             noValidate
             autoComplete="off"

@@ -1,7 +1,10 @@
 import React, { useEffect, useState} from 'react';
 import {MatrixItem} from "./MatrixItem";
 import '../../index.scss';
-import {Button, MenuItem, Select, SelectChangeEvent} from "@mui/material";
+import {Button, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
+import MatrixCalculator, {Matrix} from "../../calculators/matrix/matrix";
+import {MatrixAnswer} from "./MatrixAnswer";
+import {NumberAnswer} from "./NumberAnswer";
 
 
 export const OneMatrixCalculator: React.FC = () =>{
@@ -11,7 +14,10 @@ export const OneMatrixCalculator: React.FC = () =>{
 
 const operations = [
     "-1",
-    "det"
+    "det",
+    "T",
+    "A",
+    "*"
 ]
 
 const MatrixOperation = ( ) => {
@@ -19,11 +25,24 @@ const MatrixOperation = ( ) => {
     const [matrixData, setMatrixData] = useState<number[][]>([[0]]);
 
     const [operation, setOperation] = useState<string>('-1');
+    const [scalar, setScalar] = useState<number>(0);
 
     useEffect(() => setAnswerVisibility(false), [operation])
 
     function handleChange(event: SelectChangeEvent) {
         setOperation(event.target.value)
+    }
+
+    function isScalarMultiply() {
+        if(operation === "*"){
+            return <TextField value={scalar} type="number"
+                               color={"success"}
+                               inputProps={{min: 0, style: { textAlign: 'center'  }}}
+                               focused
+                               style = {{width: "8ch", margin: "2%"}}
+                               variant="filled"
+                               onChange={e => setScalar(Number(e.target.value))}/>
+        }
     }
 
 
@@ -39,7 +58,9 @@ const MatrixOperation = ( ) => {
                 {operations.map(o=> {
                    return( <MenuItem value={o}>{o}</MenuItem>)
                 })}
-            </Select>        </div>
+            </Select>
+            { isScalarMultiply()}
+        </div>
         <div className={"matrix-operation"}>
             <Button variant="contained" color={"success"} onClick={()=> {
                 if(!answerVisibility)
@@ -48,19 +69,37 @@ const MatrixOperation = ( ) => {
         </div>
 
         <div  className={"matrix-operation"}>
-            {renderAnswer(matrixData, operation, answerVisibility)}
+            {renderAnswer(matrixData, operation, answerVisibility, scalar)}
         </div>
     </div>
 
 }
 
 
-function renderAnswer(matrixData: number[][], operation: string, answerVisibility: boolean){
+function renderAnswer(matrixData: number[][], operation: string, answerVisibility: boolean, scalar: number){
     if(!answerVisibility)
         return null
+    let matrix: Matrix = {data: matrixData};
+
     if(operation === "-1"){
+        let answer = MatrixCalculator.InverseMatrix(matrix);
+        return <MatrixAnswer values={answer.data}/>
+    }
+    else if(operation === "A"){
+        let answer = MatrixCalculator.MatrixOfCofactors(matrix);
+        return <MatrixAnswer values={answer.data}/>
+    }
+    else if(operation === "T"){
+        let answer = MatrixCalculator.Transpose(matrix);
+        return <MatrixAnswer values={answer.data}/>
     }
     else if(operation === "det"){
+        let answer = MatrixCalculator.Determinant(matrix);
+        return <NumberAnswer value={answer}/>
+    }
+    else if(operation === "*"){
+        let answer = MatrixCalculator.ScalarMultiply(matrix, scalar);
+        return <MatrixAnswer values={answer.data}/>
     }
     return <p>Неподдерживаемя операция</p>;
 }
