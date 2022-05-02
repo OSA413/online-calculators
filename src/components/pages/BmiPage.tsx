@@ -1,9 +1,9 @@
 import React from "react";
-import {Bmi} from "../../calculators/bmi/bmi"
+import {BmiCalculator} from "../bmi/BmiCalculator"
 
 const BmiPage = (): JSX.Element => {
     return <div className='Bmi'>
-        <Bmi/>
+        <BmiCalculator/>
     </div>
 }
 
