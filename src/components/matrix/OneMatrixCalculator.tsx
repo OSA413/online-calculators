@@ -69,19 +69,28 @@ const MatrixOperation = ( ) => {
         </div>
 
         <div  className={"matrix-operation"}>
-            {renderAnswer(matrixData, operation, answerVisibility, scalar)}
+            {
+                catchErrorOrRenderAnswer(matrixData, operation, answerVisibility, scalar)}
         </div>
     </div>
 
 }
 
+function catchErrorOrRenderAnswer(matrixData: number[][], operation: string, answerVisibility: boolean, scalar: number){
+    try {
+        return renderAnswer(matrixData, operation, answerVisibility, scalar)
+    } catch (e){
+        return <p>Проверьте размер матрицы</p>
+    }
 
+}
 function renderAnswer(matrixData: number[][], operation: string, answerVisibility: boolean, scalar: number){
     if(!answerVisibility)
         return null
     const matrix: Matrix = {data: matrixData};
 
     if(operation === "-1"){
+
         const answer = MatrixCalculator.InverseMatrix(matrix);
         return <MatrixAnswer values={answer.data}/>
     }

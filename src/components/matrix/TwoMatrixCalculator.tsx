@@ -53,9 +53,18 @@ const MatrixOperation = ( ) => {
         </div>
 
         <div  className={"matrix-operation"}>
-            {renderAnswer(firstMatrixData, secondMatrixData, operation, answerVisibility)}
+            {catchErrorOrRenderAnswer(firstMatrixData, secondMatrixData, operation, answerVisibility)}
         </div>
     </div>
+}
+
+function catchErrorOrRenderAnswer(firstMatrixData: number[][], secondMatrixData: number[][], operation: string, answerVisibility: boolean){
+    try {
+        return renderAnswer(firstMatrixData ,secondMatrixData, operation, answerVisibility)
+    } catch (e){
+        return <p>Проверьте размер матриц</p>
+    }
+
 }
 
 function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][], operation: string, answerVisibility: boolean){
@@ -64,49 +73,33 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
     if(operation === "+"){
         const a:Matrix = { data: firstMatrixData}
         const b:Matrix = { data: secondMatrixData}
-        try {
             const answer = MatrixCalculator.Add(a, b);
             return <MatrixAnswer values={answer.data}/>
-        }
-        catch (e) {
-            return <p>Неправильный размер матриц</p>;
-        }
+
     }
     else if(operation === "-"){
         const a:Matrix = { data: firstMatrixData}
         const b:Matrix = { data: secondMatrixData}
-        try {
             const answer = MatrixCalculator.Subtraction(a, b);
             return <MatrixAnswer values={answer.data}/>
-        }
-        catch (e) {
-            return <p>Неправильный размер матриц</p>;
-        }
+
     }
     else if(operation === "*"){
         const a:Matrix = { data: firstMatrixData}
         const b:Matrix = { data: secondMatrixData}
-        try {
             const answer = MatrixCalculator.Multiply(a, b);
             return <MatrixAnswer values={answer.data}/>
-        }
-        catch (e) {
-            return <p>Неправильный размер матриц</p>;
-        }
+
     }
     else if(operation === "/"){
         const a:Matrix = { data: firstMatrixData}
         const b:Matrix = { data: secondMatrixData}
-        try {
+
             const newB = MatrixCalculator.InverseMatrix(b);
             const answer = MatrixCalculator.Multiply(a, newB);
             return <MatrixAnswer values={answer.data}/>
-        }
-        catch (e) {
-            return <p>Неправильный размер матриц</p>;
-        }
-    }
 
+    }
     return <p>Неподдерживаемя операция</p>;
 }
 
