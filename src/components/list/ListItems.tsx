@@ -6,25 +6,25 @@ export const ListItems = [
     {
         title: 'Home',
         path: '',
-        icon: <FaIcons.FaHome size={25} color={"black"}/>,
+        icon: <FaIcons.FaHome/>,
         cName: 'nav-text'
     },
     {
         title: 'Операции с одной матрицой',
         path: '/one-matrix',
-        icon: <SiIcons.SiMatrix size={25} color={"black"}/>,
+        icon: <SiIcons.SiMatrix/>,
         cName: 'nav-text'
     },
     {
         title: 'Операции с двумя матрицами',
         path: '/two-matrix',
-        icon: <SiIcons.SiMatrix size={25} color={"black"}/>,
+        icon: <SiIcons.SiMatrix/>,
         cName: 'nav-text'
     },
     {
         title: 'Индекс массы тела',
         path: '/bmi',
-        icon: <FaIcons.FaWeight size={25} color={"black"}/>,
+        icon: <FaIcons.FaWeight/>,
         cName: 'nav-text'
     }
 ]

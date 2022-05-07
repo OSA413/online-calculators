@@ -7,14 +7,14 @@ import {Button, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 
 
 export const TwoMatrixCalculator: React.FC = () =>{
-
     return <MatrixOperation/>
 }
 
 const operations = [
     "+",
     "-",
-    "*"
+    "*",
+    "/"
 ]
 
 const MatrixOperation = ( ) => {
@@ -29,8 +29,6 @@ const MatrixOperation = ( ) => {
     function handleChange(event: SelectChangeEvent) {
         setOperation(event.target.value)
     }
-
-
 
     return <div>
         <div  className={"matrix-operation"}>
@@ -58,18 +56,16 @@ const MatrixOperation = ( ) => {
             {renderAnswer(firstMatrixData, secondMatrixData, operation, answerVisibility)}
         </div>
     </div>
-
 }
-
 
 function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][], operation: string, answerVisibility: boolean){
     if(!answerVisibility)
         return null
     if(operation === "+"){
-        let a:Matrix = { data: firstMatrixData}
-        let b:Matrix = { data: secondMatrixData}
+        const a:Matrix = { data: firstMatrixData}
+        const b:Matrix = { data: secondMatrixData}
         try {
-            let answer = MatrixCalculator.Add(a, b);
+            const answer = MatrixCalculator.Add(a, b);
             return <MatrixAnswer values={answer.data}/>
         }
         catch (e) {
@@ -77,10 +73,10 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
         }
     }
     else if(operation === "-"){
-        let a:Matrix = { data: firstMatrixData}
-        let b:Matrix = { data: secondMatrixData}
+        const a:Matrix = { data: firstMatrixData}
+        const b:Matrix = { data: secondMatrixData}
         try {
-            let answer = MatrixCalculator.Subtraction(a, b);
+            const answer = MatrixCalculator.Subtraction(a, b);
             return <MatrixAnswer values={answer.data}/>
         }
         catch (e) {
@@ -88,10 +84,22 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
         }
     }
     else if(operation === "*"){
-        let a:Matrix = { data: firstMatrixData}
-        let b:Matrix = { data: secondMatrixData}
+        const a:Matrix = { data: firstMatrixData}
+        const b:Matrix = { data: secondMatrixData}
         try {
-            let answer = MatrixCalculator.Multiply(a, b);
+            const answer = MatrixCalculator.Multiply(a, b);
+            return <MatrixAnswer values={answer.data}/>
+        }
+        catch (e) {
+            return <p>Неправильный размер матриц</p>;
+        }
+    }
+    else if(operation === "/"){
+        const a:Matrix = { data: firstMatrixData}
+        const b:Matrix = { data: secondMatrixData}
+        try {
+            const newB = MatrixCalculator.InverseMatrix(b);
+            const answer = MatrixCalculator.Multiply(a, newB);
             return <MatrixAnswer values={answer.data}/>
         }
         catch (e) {
@@ -99,7 +107,6 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
         }
     }
 
-    //TODO обратная матрица для деления
     return <p>Неподдерживаемя операция</p>;
 }
 

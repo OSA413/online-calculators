@@ -29,9 +29,8 @@ export const MatrixItem: React.FC<{onChange(data: number[][]): void}> = ({onChan
                 }}
                 justifyContent="center"
                 alignItems="center">
-                <TextField  inputProps={{min: 0, style: { textAlign: 'center'  }}} variant={"standard"}  color={"primary"} focused value={rows} type={"number"} onChange={e=> setRows(Number(e.target.value))}/>
+                <TextField inputProps={{min: 0, style: { textAlign: 'center'  }}} variant={"standard"}  color={"primary"} focused value={rows} type={"number"} onChange={e=> setRows(Number(e.target.value))}/>
                 <TextField inputProps={{min: 0, style: { textAlign: 'center'  }}} style = {{width: "2ch"}} variant={"standard"}  color={"primary"} value={"x"}/>
-
                 <TextField inputProps={{min: 0, style: { textAlign: 'center'  }}} variant={"standard"} color={"primary"} focused value={columns} type={"number"} onChange={e=> setColumns(Number(e.target.value))}/>
             </Box>
 

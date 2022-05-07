@@ -11,16 +11,17 @@ import './components/list/CalculatorList.css';
 import {OneMatrixCalc} from "./components/pages/OneMatrixCalc";
 
 function App() {
-  return ( <BrowserRouter>
-    <div className="App">
-    <IconContext.Provider value={{ color: '#fff' }}>
-        <div className="navbar">
-            <img src={logo} className='logo' alt={"logo"}/>
-        </div>
-        <div className='nav-menu'>
-          <nav className={'nav-side'}>
-              <ul>
-                {ListItems.map((item, index) => {
+  return (
+      <BrowserRouter>
+          <div className="App">
+              <IconContext.Provider value={{ color: '#000',  size: '25px'}}>
+                  <div className="navbar">
+                      <img src={logo} className='logo' alt={"logo"}/>
+                  </div>
+                  <div className='nav-menu'>
+                      <nav className={'nav-side'}>
+                          <ul>
+                              {ListItems.map((item, index) => {
                   return (
                     <li key={index} className={item.cName}>
                       <Link to={item.path}>

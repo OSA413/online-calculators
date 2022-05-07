@@ -1,5 +1,11 @@
 import React from "react";
 
+interface BMI {
+    weight: number;
+    height: number;
+    result: string;
+}
+
 export class Bmi {
     static weight: number
     static height: number

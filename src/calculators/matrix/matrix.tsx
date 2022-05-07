@@ -6,7 +6,6 @@ class MatrixCalculator {
     static Add = (a: Matrix, b: Matrix): Matrix => {
         if (MatrixCalculator.IsDifferentSize(a, b))
             throw "Matrix dimensions differ"
-        
         return {data: a.data.map((ai, i) => ai.map((aij, j) => aij + b.data[i][j]))};
     }
 
@@ -20,7 +19,7 @@ class MatrixCalculator {
     static Multiply = (a: Matrix, b: Matrix): Matrix => {
         if (MatrixCalculator.IsDifferentSizeForMultiply(a, b))
             throw "Matrix dimensions differ"
-        const result = new Array(a.data.length).fill(0).map(row => new Array(b.data[0].length).fill(0));
+        const result = new Array(a.data.length).fill(0).map(() => new Array(b.data[0].length).fill(0));
 
         return {data: result.map((row, i) => {
             return row.map((val, j) => {
@@ -29,11 +28,11 @@ class MatrixCalculator {
     }
 
     static ScalarMultiply = (m: Matrix, scalar: number): Matrix => {
-        return {data: m.data.map((ai, i) => ai.map((aij, j) => aij * scalar))}
+        return {data: m.data.map((ai) => ai.map((aij) => aij * scalar))}
     }
 
     static Transpose = (m: Matrix): Matrix =>{
-        const res = new Array(m.data[0].length).fill(0).map(row => new Array(m.data.length).fill(0));
+        const res = new Array(m.data[0].length).fill(0).map(() => new Array(m.data.length).fill(0));
         m.data.map((row, i) => row.map((aij, j) => res[j][i] = aij))
         return {data: res};
     }
@@ -65,7 +64,7 @@ class MatrixCalculator {
     }
 
     static MatrixOfCofactors = (m: Matrix): Matrix =>{
-        const res = new Array(m.data.length).fill(0).map(row => new Array(m.data[0].length).fill(0));
+        const res = new Array(m.data.length).fill(0).map(() => new Array(m.data[0].length).fill(0));
         for (let i = 0; i < m.data.length; i++){
             for (let j = 0; j < m.data[0].length; j++){
                 const removedRowAndColumnSubmatrix = MatrixCalculator.DeleteRowAndColumn(m, j, i);
@@ -76,7 +75,7 @@ class MatrixCalculator {
     }
 
     static DeleteRowAndColumn = (m: Matrix, colNumber: number, rowNumber: number): Matrix =>{
-        let res = new Array(m.data.length - 1).fill(0).map(row => new Array(m.data[0].length - 1).fill(0));
+        const res = new Array(m.data.length - 1).fill(0).map(() => new Array(m.data[0].length - 1).fill(0));
         let newCol = 0;
         let newRow = 0;
         for (let i = 0; i < m.data.length; i++){
@@ -103,13 +102,11 @@ class MatrixCalculator {
             || a.data[0].length !== b.data[0].length;
     }
 
-
     static IsDifferentSizeForMultiply = (a: Matrix, b: Matrix): boolean =>{
         return a.data.length === 0 || b.data.length === 0
             || a.data[0].length === 0 || b.data[0].length === 0
             || a.data[0].length !== b.data.length;
-
-}
+    }
 
    static IsSquare = (matrix: Matrix): boolean =>{
         return matrix.data.length === matrix.data[0].length && matrix.data.length !== 0;

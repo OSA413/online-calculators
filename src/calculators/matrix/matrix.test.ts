@@ -4,12 +4,12 @@ describe("Matrix tests", () => {
     describe("Addition", () => {
 
         test("1x1 + 1x1", () => {
-            let a = MatrixCalculator.Add({data:[[1]]}, {data:[[2]]});
+            const a = MatrixCalculator.Add({data:[[1]]}, {data:[[2]]});
             expect(a.data[0][0]).toBe(3);
         });
         
         test("2x2 + 2x2", () => {
-            let a = MatrixCalculator.Add({data:[[1, 2],[3, 4]]}, {data:[[1, 2],[3, 4]]});
+            const a = MatrixCalculator.Add({data:[[1, 2],[3, 4]]}, {data:[[1, 2],[3, 4]]});
             expect(a.data[0][0]).toBe(2);
             expect(a.data[0][1]).toBe(4);
             expect(a.data[1][0]).toBe(6);
@@ -17,7 +17,7 @@ describe("Matrix tests", () => {
         });
         
         test("3x3 + 3x3", () => {
-            let a = MatrixCalculator.Add({data:[[1,2, 3],[4,5, 6], [7, 8, 9]]}, {data:[[1,2, 3],[4,5, 6], [7, 8, 9]]});
+            const a = MatrixCalculator.Add({data:[[1,2, 3],[4,5, 6], [7, 8, 9]]}, {data:[[1,2, 3],[4,5, 6], [7, 8, 9]]});
             expect(a.data[0][0]).toBe(2);
             expect(a.data[0][1]).toBe(4);
             expect(a.data[0][2]).toBe(6);
@@ -33,12 +33,12 @@ describe("Matrix tests", () => {
     describe("Subtraction", () => {
 
         test("1x1 - 1x1", () => {
-            let a = MatrixCalculator.Subtraction({data:[[1]]}, {data:[[2]]});
+            const a = MatrixCalculator.Subtraction({data:[[1]]}, {data:[[2]]});
             expect(a.data[0][0]).toBe(-1);
         });
 
         test("2x2 - 2x2", () => {
-            let a = MatrixCalculator.Subtraction({data:[[1, 2],[3, 4]]}, {data:[[5, 6],[7, 8]]});
+            const a = MatrixCalculator.Subtraction({data:[[1, 2],[3, 4]]}, {data:[[5, 6],[7, 8]]});
             expect(a.data[0][0]).toBe(-4);
             expect(a.data[0][1]).toBe(-4);
             expect(a.data[1][0]).toBe(-4);
@@ -46,7 +46,7 @@ describe("Matrix tests", () => {
         });
 
         test("3x3 - 3x3", () => {
-            let a = MatrixCalculator.Subtraction({data:[[1,2, 3],[4,5, 6], [7, 8, 9]]}, {data:[[1,2, 3],[4,5, 6], [7, 8, 9]]});
+            const a = MatrixCalculator.Subtraction({data:[[1,2, 3],[4,5, 6], [7, 8, 9]]}, {data:[[1,2, 3],[4,5, 6], [7, 8, 9]]});
             expect(a.data[0][0]).toBe(0);
             expect(a.data[0][1]).toBe(0);
             expect(a.data[0][2]).toBe(0);

@@ -79,26 +79,26 @@ const MatrixOperation = ( ) => {
 function renderAnswer(matrixData: number[][], operation: string, answerVisibility: boolean, scalar: number){
     if(!answerVisibility)
         return null
-    let matrix: Matrix = {data: matrixData};
+    const matrix: Matrix = {data: matrixData};
 
     if(operation === "-1"){
-        let answer = MatrixCalculator.InverseMatrix(matrix);
+        const answer = MatrixCalculator.InverseMatrix(matrix);
         return <MatrixAnswer values={answer.data}/>
     }
     else if(operation === "A"){
-        let answer = MatrixCalculator.MatrixOfCofactors(matrix);
+        const answer = MatrixCalculator.MatrixOfCofactors(matrix);
         return <MatrixAnswer values={answer.data}/>
     }
     else if(operation === "T"){
-        let answer = MatrixCalculator.Transpose(matrix);
+        const answer = MatrixCalculator.Transpose(matrix);
         return <MatrixAnswer values={answer.data}/>
     }
     else if(operation === "det"){
-        let answer = MatrixCalculator.Determinant(matrix);
+        const answer = MatrixCalculator.Determinant(matrix);
         return <NumberAnswer value={answer}/>
     }
     else if(operation === "*"){
-        let answer = MatrixCalculator.ScalarMultiply(matrix, scalar);
+        const answer = MatrixCalculator.ScalarMultiply(matrix, scalar);
         return <MatrixAnswer values={answer.data}/>
     }
     return <p>Неподдерживаемя операция</p>;
