@@ -116,3 +116,7 @@ function isSquare(matrix: Matrix){
     return matrix.data.length === matrix.data[0].length && matrix.data.length !== 0;
 }
 
+
+function isSquare(matrix: Matrix)
+
+
