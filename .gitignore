@@ -29,3 +29,4 @@ yarn.lock
 # stryker temp files
 .stryker-tmp
 /reports
+reports/mutation/html/index.html
