@@ -30,13 +30,9 @@
     "test:muts": "stryker run",
     "eject": "react-scripts eject",
     "lint": "eslint \"./src/**/*.ts?(x)\"",
-    "lint:fix": "eslint --fix \"./src/**/*.ts?(x)\""
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "lint-staged"
-    }
+    "lint:cache": "eslint \"./src/**/*.ts?(x)\" --cache",
+    "lint:fix": "eslint --fix \"./src/**/*.ts?(x)\"",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*.ts?(x)": "eslint --cache"
@@ -66,7 +62,7 @@
     "@typescript-eslint/parser": "^5.22.0",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
-    "husky": "^7.0.4",
+    "husky": "^8.0.0",
     "jest": "^27.5.1",
     "prettier": "^2.6.2",
     "pretty-quick": "^3.1.3"

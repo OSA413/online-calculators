@@ -117,6 +117,4 @@ function isSquare(matrix: Matrix){
 }
 
 
-function isSquare(matrix: Matrix)
-
 
