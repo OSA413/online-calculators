@@ -5,7 +5,7 @@ import {Button, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/mater
 import Matrix, {
     determinant,
     inverseMatrix,
-    matrixOfCofactors,
+    matrixOfCofactors, pow,
     scalarMultiply,
     transpose
 } from "../../calculators/matrix/matrix";
@@ -23,8 +23,11 @@ const operations = [
     "det",
     "T",
     "A",
-    "*"
+    "*",
+    "^"
 ]
+
+const scalarOperations = ["*", "^"]
 
 const MatrixOperation = ( ) => {
     const [answerVisibility, setAnswerVisibility] = useState<boolean>(false);
@@ -39,8 +42,8 @@ const MatrixOperation = ( ) => {
         setOperation(event.target.value)
     }
 
-    function isScalarMultiply() {
-        if(operation === "*"){
+    function isScalarMultiplyOrPow() {
+        if(scalarOperations.includes(operation)){
             return <TextField value={scalar} type="number"
                                color={"success"}
                                inputProps={{min: 0, style: { textAlign: 'center'  }}}
@@ -65,7 +68,7 @@ const MatrixOperation = ( ) => {
                    return( <MenuItem value={o}>{o}</MenuItem>)
                 })}
             </Select>
-            { isScalarMultiply()}
+            { isScalarMultiplyOrPow()}
         </div>
         <div className={"matrix-operation"}>
             <Button variant="contained" color={"success"} onClick={()=> {
@@ -114,6 +117,10 @@ function renderAnswer(matrixData: number[][], operation: string, answerVisibilit
     }
     else if(operation === "*"){
         const answer = scalarMultiply(matrix, scalar);
+        return <MatrixAnswer values={answer.data}/>
+    }
+    else if(operation === "^"){
+        const answer = pow(matrix, scalar);
         return <MatrixAnswer values={answer.data}/>
     }
     return <p>Неподдерживаемя операция</p>;
