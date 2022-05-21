@@ -63,7 +63,7 @@ export function inverseMatrix(m: Matrix): Matrix {
 }
 
 export function matrixOfCofactors(m: Matrix): Matrix{
-    const res = new Array(m.data.length).fill(0).map(() => new Array(m.data[0].length).fill(0));
+    const res = createDoubleArray(m.data.length, m.data[0].length)
     for (let i = 0; i < m.data.length; i++){
         for (let j = 0; j < m.data[0].length; j++){
             const removedRowAndColumnSubmatrix = deleteRowAndColumn(m, j, i);
@@ -99,21 +99,21 @@ function createDoubleArray(n: number, m: number): number[][]{
 }
 
 
-function isDiffSize(a: Matrix, b: Matrix): boolean{
+export function isDiffSize(a: Matrix, b: Matrix): boolean{
     return a.data.length == 0 || b.data.length == 0
         || a.data[0].length == 0 || b.data[0].length == 0
         || a.data.length !== b.data.length
         || a.data[0].length !== b.data[0].length;
 }
 
-function isDiffSizeForMultiply(a: Matrix, b: Matrix): boolean{
+export function isDiffSizeForMultiply(a: Matrix, b: Matrix): boolean{
     return a.data.length === 0 || b.data.length === 0
         || a.data[0].length === 0 || b.data[0].length === 0
         || a.data[0].length !== b.data.length;
 }
 
-function isSquare(matrix: Matrix){
-    return matrix.data.length === matrix.data[0].length && matrix.data.length !== 0;
+export function isSquare(matrix: Matrix){
+    return  matrix.data.length !== 0 && matrix.data.length === matrix.data[0].length;
 }
 
 

@@ -1,7 +1,7 @@
 
-export function bmi(weight?: number, height?: number){
+export function bmi(weight?: number, height?: number): number{
      if(!weight || !height){
-         return null;
+         throw "Not enough parameters passed"
      }
      return( weight / (height * height)) * 10000;
 }
