@@ -26,6 +26,15 @@ export function multiply(a: Matrix, b: Matrix): Matrix{
             })})};
 }
 
+export function pow(a: Matrix, n: number): Matrix{
+    if(n == 1)
+        return a;
+    for (let i = 0; i < n -1; i++) {
+        a = multiply(a, a)
+    }
+    return a
+}
+
 export function scalarMultiply(matrix: Matrix, scalar: number): Matrix{
     return {data: matrix.data.map((ai) => ai.map((aij) => aij * scalar))}
 }

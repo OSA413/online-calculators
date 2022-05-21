@@ -43,11 +43,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
+
+
 export const BmiCalculator: React.FC = () => {
     // const [result, setResult] = useState<string>(Bmi.result);
 
     const [height, setHeight] = useState<number>();
     const [weight, setWeight] = useState<number>();
+
+    function getResult(){
+        try {
+            return bmi(weight, height).toFixed(1);
+        } catch (e){
+            return undefined;
+        }
+    }
     return <>
         <div className={"bmi-header"}>
             <Typography variant="h4" align={"center"}>
@@ -83,7 +93,7 @@ export const BmiCalculator: React.FC = () => {
                 }}/>
             </div>
             <div className={"bmi-result"}>
-                <TextField label={"Результат"} value={bmi(weight, height)} color="success" focused type={"number"} InputProps={{
+                <TextField label={"Результат"} value={getResult()} color="success" focused type={"number"} InputProps={{
                     readOnly: true,
                 }}/>
             </div>

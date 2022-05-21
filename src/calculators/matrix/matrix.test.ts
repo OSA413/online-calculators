@@ -3,7 +3,7 @@ import {
     determinant,
     inverseMatrix, isDiffSize, isDiffSizeForMultiply,
     matrixOfCofactors,
-    multiply,
+    multiply, pow,
     scalarMultiply,
     subtraction,
     transpose
@@ -143,6 +143,24 @@ describe("Matrix tests", () => {
                 multiply({data:[[1,2, 3],[4,5, 6], [7, 8, 9]]}, {data:[[]]});
             }).toThrow("Matrix dimensions differ");
 
+        });
+    })
+    describe("Pow", () => {
+
+        test("2x2 ^ 1", () => {
+            const a = pow({data:[[1, 2],[3, 4]]}, 1);
+            expect(a.data[0][0]).toBe(1);
+            expect(a.data[0][1]).toBe(2);
+            expect(a.data[1][0]).toBe(3);
+            expect(a.data[1][1]).toBe(4);
+        });
+
+        test("2x2 ^ 2", () => {
+            const a = pow({data:[[1, 2],[3, 4]]}, 2);
+            expect(a.data[0][0]).toBe(1);
+            expect(a.data[0][1]).toBe(2);
+            expect(a.data[1][0]).toBe(3);
+            expect(a.data[1][1]).toBe(4);
         });
     })
 
