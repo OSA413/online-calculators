@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import {Bmi} from "../../calculators/bmi/bmi";
+import {bmi} from "../../calculators/bmi/bmi";
 import {
     Box,
     InputAdornment,
@@ -44,7 +44,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 export const BmiCalculator: React.FC = () => {
-    const [result, setResult] = useState<string>(Bmi.result);
+    // const [result, setResult] = useState<string>(Bmi.result);
+
+    const [height, setHeight] = useState<number>();
+    const [weight, setWeight] = useState<number>();
     return <>
         <div className={"bmi-header"}>
             <Typography variant="h4" align={"center"}>
@@ -67,18 +70,20 @@ export const BmiCalculator: React.FC = () => {
                 <TextField label="Вес" InputProps={{
                     endAdornment: <InputAdornment position="end">kg</InputAdornment>,
                 }}  color="secondary" focused type={"number"} onChange={e => {
-                    changingValues(parseFloat(e.target.value), 'weight')
-                    setResult(Bmi.result);
+                    // changingValues(parseFloat(e.target.value), 'weight')
+                    // setResult(Bmi.result);
+                    setWeight(parseFloat(e.target.value))
                 }}/>
                 <TextField label="Рост" InputProps={{
                     endAdornment: <InputAdornment position="end">cm</InputAdornment>,
                 }} color="secondary" focused type={"number"} onChange={e => {
-                    changingValues(parseFloat(e.target.value), 'height');
-                    setResult(Bmi.result);
+                   // changingValues(parseFloat(e.target.value), 'height');
+                   //  setResult(Bmi.result);
+                    setHeight(parseFloat(e.target.value))
                 }}/>
             </div>
             <div className={"bmi-result"}>
-                <TextField label={"Результат"} value={result} color="success" focused type={"number"} InputProps={{
+                <TextField label={"Результат"} value={bmi(weight, height)} color="success" focused type={"number"} InputProps={{
                     readOnly: true,
                 }}/>
             </div>
@@ -107,13 +112,4 @@ export const BmiCalculator: React.FC = () => {
         </div>
 
     </>
-}
-
-function changingValues(value: number, parameter: string): void {
-    if (value > 0 && parameter === 'height'){
-        Bmi.height = value;
-    } else if (value > 0 && parameter === 'weight'){
-        Bmi.weight = value;
-    }
-    Bmi.Calculate();
 }

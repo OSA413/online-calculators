@@ -2,7 +2,13 @@ import React, { useEffect, useState} from 'react';
 import {MatrixItem} from "./MatrixItem";
 import '../../index.scss';
 import {Button, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
-import MatrixCalculator, {Matrix} from "../../calculators/matrix/matrix";
+import Matrix, {
+    determinant,
+    inverseMatrix,
+    matrixOfCofactors,
+    scalarMultiply,
+    transpose
+} from "../../calculators/matrix/matrix";
 import {MatrixAnswer} from "./MatrixAnswer";
 import {NumberAnswer} from "./NumberAnswer";
 
@@ -91,23 +97,23 @@ function renderAnswer(matrixData: number[][], operation: string, answerVisibilit
 
     if(operation === "-1"){
 
-        const answer = MatrixCalculator.InverseMatrix(matrix);
+        const answer = inverseMatrix(matrix);
         return <MatrixAnswer values={answer.data}/>
     }
     else if(operation === "A"){
-        const answer = MatrixCalculator.MatrixOfCofactors(matrix);
+        const answer = matrixOfCofactors(matrix);
         return <MatrixAnswer values={answer.data}/>
     }
     else if(operation === "T"){
-        const answer = MatrixCalculator.Transpose(matrix);
+        const answer = transpose(matrix);
         return <MatrixAnswer values={answer.data}/>
     }
     else if(operation === "det"){
-        const answer = MatrixCalculator.Determinant(matrix);
+        const answer = determinant(matrix);
         return <NumberAnswer value={answer}/>
     }
     else if(operation === "*"){
-        const answer = MatrixCalculator.ScalarMultiply(matrix, scalar);
+        const answer = scalarMultiply(matrix, scalar);
         return <MatrixAnswer values={answer.data}/>
     }
     return <p>Неподдерживаемя операция</p>;

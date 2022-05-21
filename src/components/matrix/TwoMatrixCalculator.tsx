@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {MatrixItem} from "./MatrixItem";
 import {MatrixAnswer} from "./MatrixAnswer";
-import MatrixCalculator, {Matrix} from "../../calculators/matrix/matrix";
+import Matrix, {add, inverseMatrix, multiply, subtraction} from "../../calculators/matrix/matrix";
 import '../../index.scss';
 import {Button, MenuItem, Select, SelectChangeEvent} from "@mui/material";
 
@@ -73,21 +73,21 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
     if(operation === "+"){
         const a:Matrix = { data: firstMatrixData}
         const b:Matrix = { data: secondMatrixData}
-            const answer = MatrixCalculator.Add(a, b);
+            const answer = add(a, b);
             return <MatrixAnswer values={answer.data}/>
 
     }
     else if(operation === "-"){
         const a:Matrix = { data: firstMatrixData}
         const b:Matrix = { data: secondMatrixData}
-            const answer = MatrixCalculator.Subtraction(a, b);
+            const answer = subtraction(a, b);
             return <MatrixAnswer values={answer.data}/>
 
     }
     else if(operation === "*"){
         const a:Matrix = { data: firstMatrixData}
         const b:Matrix = { data: secondMatrixData}
-            const answer = MatrixCalculator.Multiply(a, b);
+            const answer = multiply(a, b);
             return <MatrixAnswer values={answer.data}/>
 
     }
@@ -95,8 +95,8 @@ function renderAnswer(firstMatrixData: number[][], secondMatrixData: number[][],
         const a:Matrix = { data: firstMatrixData}
         const b:Matrix = { data: secondMatrixData}
 
-            const newB = MatrixCalculator.InverseMatrix(b);
-            const answer = MatrixCalculator.Multiply(a, newB);
+            const newB = inverseMatrix(b);
+            const answer = multiply(a, newB);
             return <MatrixAnswer values={answer.data}/>
 
     }

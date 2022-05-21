@@ -1,21 +1,7 @@
-import React from "react";
 
-interface BMI {
-    weight: number;
-    height: number;
-    result: string;
-}
-
-export class Bmi {
-    static weight: number
-    static height: number
-    static result: string
-
-    static Calculate = (): void => {
-        if (Bmi.weight && Bmi.height) {
-            Bmi.result = String(((Bmi.weight / (Bmi.height * Bmi.height)) * 10000).toFixed(2));
-        } else{
-            Bmi.result = 'Проверьте правильность введённых параметров';
-        }
-    }
+export function bmi(weight?: number, height?: number){
+     if(!weight || !height){
+         return null;
+     }
+     return( weight / (height * height)) * 10000;
 }
