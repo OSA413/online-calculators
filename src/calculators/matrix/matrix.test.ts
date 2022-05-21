@@ -157,10 +157,10 @@ describe("Matrix tests", () => {
 
         test("2x2 ^ 2", () => {
             const a = pow({data:[[1, 2],[3, 4]]}, 2);
-            expect(a.data[0][0]).toBe(1);
-            expect(a.data[0][1]).toBe(2);
-            expect(a.data[1][0]).toBe(3);
-            expect(a.data[1][1]).toBe(4);
+            expect(a.data[0][0]).toBe(7);
+            expect(a.data[0][1]).toBe(10);
+            expect(a.data[1][0]).toBe(15);
+            expect(a.data[1][1]).toBe(22);
         });
     })
 
